@@ -7,10 +7,14 @@
             <li routerLinkActive="active"><a routerLink="auth">Authentification</a></li>
             <li routerLinkActive="active"><a routerLink="appareils">Appareils</a></li>
           </ul>
+          <div class="navbar-right">
+          <p>Vous êtes connecté depuis {{ secondes }} secondes !</p>
         </div>
+
       </div>
-    </nav>
-    <div class="col-xs-12">
-        <router-outlet></router-outlet>
+  </div>
+  </nav>
+  <div class="col-xs-12">
+    <router-outlet></router-outlet>
   </div>
 </div>
