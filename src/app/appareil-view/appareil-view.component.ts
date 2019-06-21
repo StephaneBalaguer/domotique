@@ -24,6 +24,7 @@ export class AppareilViewComponent implements OnInit, OnDestroy {
   constructor(private appareilService: AppareilService) { }
 
   ngOnInit() {
+    this.onFetch();
     this.appareilSubscription = this.appareilService.appareilsSubject.subscribe(
       (appareils: any[]) => {
         this.appareils = appareils;
@@ -34,18 +35,27 @@ export class AppareilViewComponent implements OnInit, OnDestroy {
 
   onAllumer() {
     this.appareilService.switchOnAll();
+    this.onSave();
   }
 
   onEteindre() {
     if(confirm('Etes-vous sûr de vouloir éteindre tous vos appareils ?')) {
       this.appareilService.switchOffAll();
+      this.onSave();
     } else {
       return null;
     }
   }
 
   ngOnDestroy() {
+    this.onSave();
     this.appareilSubscription.unsubscribe();
   }
 
+  onSave() {
+    this.appareilService.saveAppareilsToServer();
+  }
+  onFetch() {
+    this.appareilService.getAppareilsFromServer();
+  }
 }

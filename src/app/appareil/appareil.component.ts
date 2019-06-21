@@ -34,9 +34,11 @@ export class AppareilComponent implements OnInit {
   onSwitch() {
     if (this.appareilStatus === "allumé") {
       this.appareilService.switchOffOne(this.index);
+      this.appareilService.saveAppareilsToServer();
     }
     else if (this.appareilStatus === "éteint") {
       this.appareilService.switchOnOne(this.index);
+      this.appareilService.saveAppareilsToServer();
     }
   }
 
